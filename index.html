@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Jena Querying</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel='stylesheet' type='text/css' media="all" href='style.css'/>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    </head>
+    <body onload="Datafill">
+        <script>
+            $('#userURL, #sparqlquery').bind('keyup', function() {
+            if(allFilled()) $('#submitquery').removeAttr('disabled');
+            });
+
+            function allFilled() {
+                var filled = true;
+                $('body input').each(function() {
+                if($(this).val() === '') filled = false;
+                });
+                return filled;
+}            
+            
+        </script>
+        <form method="post" action="jenaservlet">
+            <div>
+                <div id="divHeader">
+                    <h1>Query Using Jena Api</h1>
+                </div>
+                <div id="divAlign">
+                    <div id="divTitle">URL of File:<input type="text" name="userURL" value=""><br /><br /></div>
+                </div>
+                <div id="divAlign">
+                    <div id="divTitle"> Rules Supported:<textarea disabled rows="4" cols="50" name="rules">
+                        1.Select
+                        2.Describe
+                        3.Construct
+                        4.Ask
+                        </textarea><br /><br /></div>
+                </div>
+                <div id="divAlign">
+                    <div id="divTitle">SPAQL query:<textarea rows="4" cols="50" name="sparqlquery"></textarea><br /><br /></div>
+                </div>
+                <div id="divAlign">
+                    <div id="divinput"><input type="submit" id="submitquery" value="Query">   <br /><br /></div>
+                </div>
+                <div id="divAlign">
+                    <div id="divTitle">Query Results:<textarea disabled rows="10" cols="80" name="sparqlresults"></textarea><br /><br /></div>
+            </div>
+        </form>
+        
+    </body>
+</html>
